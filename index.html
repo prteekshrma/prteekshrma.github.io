@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dr. Prateek Sharma — Physics</title>
+<meta name="description" content="Dr. Prateek Sharma, Assistant Professor of Physics. Research in general relativity and black hole phenomenology: shadows, gravitational lensing, geodesics and thermodynamics in modified gravity.">
+<meta name="author" content="Prateek Sharma">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23123a63'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='26' fill='white' text-anchor='middle'%3EPS%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #fdfdfb;
+    --text: #1d2330;
+    --muted: #5b6475;
+    --accent: #123a63;
+    --accent-soft: #e8eef5;
+    --rule: #e2e5ea;
+    --link: #0b5a9e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12151b;
+      --text: #e6e8ec;
+      --muted: #9aa3b2;
+      --accent: #9cc3ea;
+      --accent-soft: #1d2530;
+      --rule: #2a313c;
+      --link: #8cc0f2;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 20px; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: normal; color: var(--accent); }
+
+  /* ---------- Navigation ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+  nav .wrap { display: flex; flex-wrap: wrap; gap: 4px 22px; padding-top: 12px; padding-bottom: 12px; font-size: 15px; }
+  nav a { color: var(--muted); }
+  nav a:hover { color: var(--accent); text-decoration: none; }
+
+  /* ---------- Header ---------- */
+  header { padding: 48px 0 28px; }
+  .intro { display: flex; gap: 32px; align-items: center; }
+  .photo {
+    width: 150px; height: 150px; flex: 0 0 150px;
+    border-radius: 50%; object-fit: cover;
+    background: var(--accent-soft);
+    border: 1px solid var(--rule);
+  }
+  .initials {
+    width: 150px; height: 150px; flex: 0 0 150px; border-radius: 50%;
+    display: none; align-items: center; justify-content: center;
+    background: var(--accent-soft); color: var(--accent);
+    font-family: Georgia, serif; font-size: 48px;
+    border: 1px solid var(--rule);
+  }
+  h1 { font-size: 36px; margin: 0 0 4px; line-height: 1.2; }
+  .role { margin: 0; font-size: 18px; }
+  .affil { margin: 2px 0 14px; color: var(--muted); }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 15px; }
+  .links a { border: 1px solid var(--rule); border-radius: 4px; padding: 3px 10px; }
+  .links a:hover { background: var(--accent-soft); text-decoration: none; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 26px 0 10px; border-top: 1px solid var(--rule); scroll-margin-top: 56px; }
+  h2 { font-size: 26px; margin: 0 0 14px; }
+  h3 { font-size: 19px; margin: 22px 0 8px; color: var(--text); }
+  p { margin: 0 0 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 14px; padding: 0; list-style: none; }
+  .tags li { background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 3px 12px; font-size: 15px; }
+
+  /* ---------- Publications ---------- */
+  ol.pubs { padding-left: 0; list-style: none; counter-reset: pub; margin: 0; }
+  ol.pubs li { counter-increment: pub; position: relative; padding: 0 0 16px 40px; }
+  ol.pubs li::before {
+    content: "[" counter(pub) "]";
+    position: absolute; left: 0; top: 0; color: var(--muted); font-size: 15px;
+  }
+  .pub-title { font-weight: 600; }
+  .pub-authors, .pub-venue { display: block; font-size: 15.5px; }
+  .pub-venue { color: var(--muted); }
+  .pub-venue a { margin-left: 6px; font-size: 14px; }
+  .me { font-weight: 600; color: var(--text); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
+
+  /* ---------- Simple lists ---------- */
+  ul.plain { padding-left: 20px; margin: 0 0 12px; }
+  ul.plain li { margin-bottom: 8px; }
+  .row { display: flex; justify-content: space-between; gap: 16px; }
+  .row .when { color: var(--muted); white-space: nowrap; font-size: 15px; }
+  .entry { margin-bottom: 12px; }
+  .entry .sub { color: var(--muted); font-size: 15.5px; }
+  details { margin: 6px 0 14px; }
+  summary { cursor: pointer; color: var(--link); font-size: 15.5px; }
+  details ul { margin-top: 10px; }
+
+  footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: 14px; padding: 22px 0 40px; margin-top: 20px; }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    header { padding-top: 30px; }
+    .intro { flex-direction: column; align-items: flex-start; gap: 18px; }
+    .photo, .initials { width: 110px; height: 110px; flex-basis: 110px; font-size: 36px; }
+    h1 { font-size: 30px; }
+    .row { flex-direction: column; gap: 0; }
+    ol.pubs li { padding-left: 34px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#education">Education</a>
+    <a href="#activities">Activities</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<header>
+  <div class="intro">
+    <!-- Add your photo to the repository as photo.jpg; the initials show until then. -->
+    <img class="photo" src="photo.jpg" alt="Photo of Prateek Sharma"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="initials" aria-hidden="true">PS</div>
+    <div>
+      <h1>Dr. Prateek Sharma</h1>
+      <p class="role">Assistant Professor of Physics</p>
+      <!-- CHECK: your CV says Govt. P.G. College, Ranikhet. Edit this line if needed. -->
+      <p class="affil">Department of Physics, Government Post Graduate College, Ramnagar (Nainital), Uttarakhand, India</p>
+      <div class="links">
+        <a href="#contact">Email</a>
+        <a href="https://orcid.org/0000-0002-4935-9626" target="_blank" rel="noopener">ORCID</a>
+        <!-- Add later, e.g.: <a href="https://scholar.google.com/citations?user=XXXX">Google Scholar</a> -->
+        <a href="cv.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <h2>About</h2>
+  <p>
+    Prateek Sharma is an Assistant Professor of Physics in Uttarakhand, India. He received
+    his Ph.D. in Physics from Gurukula Kangri (Deemed to be University), Haridwar, in 2021,
+    where he was a Junior Research Fellow in a SERB project on null geodesics around strong
+    gravitational sources. His research is in general relativity and black hole
+    phenomenology, with a focus on how black holes in modified theories of gravity can be
+    tested through their shadows, gravitational lensing, particle orbits and thermodynamics.
+    He teaches physics at the undergraduate and postgraduate levels and supervises M.Sc. and
+    B.Sc. students.
+  </p>
+</section>
+
+<section id="research">
+  <h2>Research</h2>
+  <ul class="tags">
+    <li>General relativity</li>
+    <li>Black hole shadows</li>
+    <li>Gravitational lensing</li>
+    <li>Geodesics</li>
+    <li>Black hole thermodynamics</li>
+    <li>Modified gravity</li>
+  </ul>
+  <p>
+    Black holes predicted by theories beyond general relativity, such as supergravity,
+    f(R) gravity, Einstein–Yang–Mills theory and string-inspired models, or surrounded by
+    matter fields such as quintessence, can differ measurably from the Kerr black hole of
+    Einstein's theory. His work studies these differences through observable quantities: the
+    size and shape of the black hole shadow, the deflection of light and weak lensing
+    (including in a plasma), the stability of particle and photon orbits, and the
+    thermodynamic properties of the spacetime. The aim is to connect such models with
+    observations like those of the Event Horizon Telescope.
+  </p>
+</section>
+
+<section id="publications">
+  <h2>Publications</h2>
+
+  <h3>Journal articles</h3>
+  <ol class="pubs">
+    <li>
+      <span class="pub-title">Shadow and weak gravitational lensing of a rotating regular black hole in a non-minimally coupled Einstein–Yang–Mills theory in the presence of plasma</span>
+      <span class="pub-authors">S. Kala, H. Nandan, <span class="me">P. Sharma</span></span>
+      <span class="pub-venue"><em>Eur. Phys. J. Plus</em> <strong>137</strong>, 457 (2022)
+        <a href="https://doi.org/10.1140/epjp/s13360-022-02634-6" target="_blank" rel="noopener">DOI</a></span>
+    </li>
+    <li>
+      <span class="pub-title">Geodesics of a static charged black hole spacetime in f(R) gravity</span>
+      <span class="pub-authors"><span class="me">P. Sharma</span>, H. Nandan, G. G. L. Nashed, S. Giri, A. Abebe</span>
+      <span class="pub-venue"><em>Symmetry</em> <strong>14</strong>, 309 (2022)
+        <a href="https://doi.org/10.3390/sym14020309" target="_blank" rel="noopener">DOI</a></span>
+    </li>
+    <li>
+      <span class="pub-title">Geodesics and bending of light around a BTZ black hole surrounded by quintessential matter</span>
+      <span class="pub-authors">S. Kala, H. Nandan, <span class="me">P. Sharma</span>, M. Elmardi</span>
+      <span class="pub-venue"><em>Mod. Phys. Lett. A</em> <strong>36</strong>, 2150224 (2021)
+        <a href="https://doi.org/10.1142/S0217732321502242" target="_blank" rel="noopener">DOI</a></span>
+    </li>
+    <li>
+      <span class="pub-title">Optical and thermodynamic properties of a rotating dyonic black hole spacetime in 𝒩 = 2, U(1)² gauged supergravity</span>
+      <span class="pub-authors"><span class="me">P. Sharma</span>, H. Nandan, U. Papnoi, A. K. Chatterjee</span>
+      <span class="pub-venue"><em>Eur. Phys. J. C</em> <strong>81</strong>, 429 (2021)
+        <a href="https://doi.org/10.1140/epjc/s10052-021-09178-6" target="_blank" rel="noopener">DOI</a></span>
+    </li>
+    <li>
+      <span class="pub-title">Deflection of light around a rotating BTZ black hole</span>
+      <span class="pub-authors">S. Kala, H. Nandan, <span class="me">P. Sharma</span></span>
+      <span class="pub-venue"><em>Mod. Phys. Lett. A</em> <strong>35</strong>, 2050323 (2020)
+        <a href="https://doi.org/10.1142/S021773232050323X" target="_blank" rel="noopener">DOI</a></span>
+    </li>
+    <li>
+      <span class="pub-title">Deflection of light and shadow cast by a dual-charged stringy black hole</span>
+      <span class="pub-authors">S. Kala, Saurabh, H. Nandan, <span class="me">P. Sharma</span></span>
+      <span class="pub-venue"><em>Int. J. Mod. Phys. A</em> <strong>35</strong>, 2050177 (2020)
+        <a href="https://doi.org/10.1142/S0217751X20501778" target="_blank" rel="noopener">DOI</a></span>
+    </li>
+    <li>
+      <span class="pub-title">Deflection of light by a rotating black hole surrounded by “quintessence”</span>
+      <span class="pub-authors"><span class="me">P. Sharma</span>, H. Nandan, R. Gannouji, R. Uniyal, A. Abebe</span>
+      <span class="pub-venue"><em>Int. J. Mod. Phys. A</em> <strong>35</strong>, 2050155 (2020)
+        <a href="https://doi.org/10.1142/S0217751X20501559" target="_blank" rel="noopener">DOI</a></span>
+    </li>
+  </ol>
+
+  <h3>Conference proceedings</h3>
+  <ol class="pubs">
+    <li>
+      <span class="pub-title">Geodesics in a rotating black hole spacetime surrounded by quintessence</span>
+      <span class="pub-authors">H. Nandan, <span class="me">P. Sharma</span>, R. Uniyal, P. Jetzer</span>
+      <span class="pub-venue"><em>Proceedings of the Fifteenth Marcel Grossmann Meeting</em>, pp. 849–854 (2022)
+        <a href="https://doi.org/10.1142/9789811258251_0114" target="_blank" rel="noopener">DOI</a></span>
+    </li>
+  </ol>
+</section>
+
+<section id="teaching">
+  <h2>Teaching</h2>
+  <p>
+    He teaches undergraduate and postgraduate physics and supervises M.Sc. and B.Sc.
+    student projects.
+  </p>
+  <!-- CHECK: edit this list to match the courses you teach. -->
+  <ul class="plain">
+    <li><strong>Physical Optics</strong> — B.Sc. (Semester V)</li>
+    <li><strong>Advanced Quantum Mechanics</strong> — M.Sc.</li>
+  </ul>
+  <!-- When your lecture notes are ready, upload the PDFs to a "notes" folder and list them here, e.g.
+  <h3>Lecture notes</h3>
+  <ul class="plain">
+    <li><a href="notes/U2_L01_Interference_Superposition_Intensity.pdf">Interference of light</a></li>
+  </ul>
+  -->
+</section>
+
+<section id="education">
+  <h2>Education</h2>
+  <div class="entry">
+    <div class="row"><strong>Ph.D. in Physics</strong><span class="when">2016 – 2021</span></div>
+    <div class="sub">Gurukula Kangri (Deemed to be University), Haridwar</div>
+  </div>
+  <div class="entry">
+    <div class="row"><strong>M.Sc. in Physics</strong><span class="when">2014 – 2016</span></div>
+    <div class="sub">Gurukula Kangri Vishwavidyalaya, Haridwar</div>
+  </div>
+  <div class="entry">
+    <div class="row"><strong>B.Sc. (Physics, Chemistry, Mathematics)</strong><span class="when">2011 – 2014</span></div>
+    <div class="sub">Hemwati Nandan Bahuguna Garhwal University</div>
+  </div>
+</section>
+
+<section id="activities">
+  <h2>Awards &amp; Activities</h2>
+
+  <h3>Awards and fellowships</h3>
+  <ul class="plain">
+    <li>Junior Research Fellow, SERB project <em>Null Geodesics Around Strong Gravitational Sources</em>, Gurukula Kangri (Deemed to be University), Haridwar</li>
+    <li>Young Scientist Award for the best poster presentation (Physics), 12th Uttarakhand State Science and Technology Congress, UCOST, Dehradun, 2018</li>
+    <li>First prize for poster presentation, XXXII Annual IAPT Convention and National Symposium on Recent Trends in Physics at Different Scales, Haridwar, 2017</li>
+  </ul>
+
+  <h3>Schools</h3>
+  <ul class="plain">
+    <li>Winter School in Astronomy, Astrophysics and Cosmology (WSAAC), Gauhati University, 2019</li>
+    <li>SERB Preparatory School in Theoretical High Energy Physics, University of Hyderabad, 2018</li>
+  </ul>
+
+  <h3>Selected conferences and meetings</h3>
+  <ul class="plain">
+    <li>40th Meeting of the Astronomical Society of India, IIT Roorkee, 2022</li>
+    <li>International Conference on Cosmology &amp; Gravity (CosmoGrav22), Haridwar, 2022</li>
+    <li>4th Shivalik HEPCATS Meeting, IIT Ropar (online), 2021</li>
+    <li>4th National Conference on Recent Trends in the Study of Compact Objects (RETCO-IV), IUCAA, Pune, 2019</li>
+    <li>30th Meeting of the Indian Association for General Relativity and Gravitation (IAGRG), BITS Pilani Hyderabad Campus, 2019</li>
+    <li>Young Astronomers Meet 2019, Kodaikanal Solar Observatory, 2019</li>
+  </ul>
+  <details>
+    <summary>More workshops and meetings</summary>
+    <ul class="plain">
+      <li>National Workshop on Artificial Neural Networks with MATLAB Implementation, Haridwar, 2020</li>
+      <li>Workshop on Environmental Physics: Electronic Devices &amp; Data Science, Haridwar, 2018</li>
+      <li>12th Uttarakhand State Science and Technology Congress, UCOST, Dehradun, 2018</li>
+      <li>XXXII Annual IAPT Convention and National Symposium on Recent Trends in Physics at Different Scales, Haridwar, 2017</li>
+      <li>Second National Conference on Radiation Awareness and Detection in Natural Environment, Haridwar, 2017</li>
+      <li>National Workshop on Gravitational Wave Astronomy, Dibrugarh University, 2016</li>
+      <li>Workshop on Low Cost Experiments and Hands-on Training in Physics, Haridwar, 2016</li>
+      <li>Workshop and Hands-on Activities: It's A Materials World, Haridwar, 2016</li>
+      <li>Workshop and Hands-on Training on Synthesis and Characterization of Thin Films, Haridwar, 2015</li>
+    </ul>
+  </details>
+
+  <h3>Memberships</h3>
+  <ul class="plain">
+    <li>Life Member, Indian Association for General Relativity and Gravitation (IAGRG)</li>
+    <li>Life Member, Indian Association of Physics Teachers (IAPT)</li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>
+    Email: <a id="email-link" href="#contact">prteeksh [at] gmail [dot] com</a><br>
+    Department of Physics, Government Post Graduate College, Ramnagar (Nainital), Uttarakhand, India
+  </p>
+</section>
+
+<footer>
+  © <span id="year">2026</span> Prateek Sharma
+</footer>
+
+</div>
+
+<script>
+  // Builds the email link in the browser so that spam bots cannot read it from the page.
+  (function () {
+    var user = "prteeksh", domain = "gmail.com";
+    var a = document.getElementById("email-link");
+    if (a) { a.href = "mailto:" + user + "@" + domain; a.textContent = user + "@" + domain; }
+    var y = document.getElementById("year");
+    if (y) { y.textContent = new Date().getFullYear(); }
+  })();
+</script>
+</body>
+</html>
