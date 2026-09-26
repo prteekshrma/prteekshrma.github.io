@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lecture Notes — Dr. Prateek Sharma</title>
-<meta name="description" content="Lecture notes in physics by Dr. Prateek Sharma: Physical Optics (B.Sc. Semester V), interference and diffraction.">
+<meta name="description" content="Physics lecture notes by Dr. Prateek Sharma for B.Sc. and M.Sc. courses.">
 <meta name="author" content="Prateek Sharma">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23123a63'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='26' fill='white' text-anchor='middle'%3EPS%3C/text%3E%3C/svg%3E">
 <style>
@@ -48,31 +48,49 @@
   nav a:hover { color: var(--accent); text-decoration: none; }
   nav a.here { color: var(--accent); font-weight: 600; }
 
-  header { padding: 44px 0 20px; }
+  header { padding: 44px 0 16px; }
   h1 { font-size: 34px; margin: 0 0 8px; line-height: 1.2; }
   .lead { color: var(--muted); margin: 0; }
 
-  .course { border-top: 1px solid var(--rule); padding: 26px 0 8px; }
-  h2 { font-size: 25px; margin: 0 0 2px; }
-  .course-meta { color: var(--muted); font-size: 15.5px; margin: 0 0 12px; }
-  h3 { font-size: 18px; margin: 20px 0 8px; color: var(--text); }
+  h2.programme { font-size: 24px; margin: 30px 0 10px; padding-top: 18px; border-top: 1px solid var(--rule); }
 
-  ol.lectures { list-style: none; padding: 0; margin: 0 0 8px; }
+  /* ---------- Drop-down course boxes ---------- */
+  details.course {
+    border: 1px solid var(--rule); border-radius: 8px;
+    margin: 0 0 12px; background: var(--bg);
+  }
+  details.course > summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px;
+  }
+  details.course > summary::-webkit-details-marker { display: none; }
+  details.course > summary::before {
+    content: "▸"; color: var(--accent); font-size: 15px;
+    display: inline-block; transition: transform 0.15s ease; flex: 0 0 auto;
+  }
+  details.course[open] > summary::before { transform: rotate(90deg); }
+  details.course > summary:hover { background: var(--accent-soft); border-radius: 8px; }
+  .sem { color: var(--muted); font-size: 14px; white-space: nowrap; min-width: 92px; }
+  .cname { font-weight: 600; flex: 1 1 auto; }
+  .count { color: var(--muted); font-size: 13px; white-space: nowrap; }
+  .course-body { padding: 0 18px 14px 44px; }
+  .course-body h3 { font-size: 17px; margin: 12px 0 4px; color: var(--text); }
+  .empty { color: var(--muted); font-style: italic; font-size: 15px; margin: 4px 0 6px; }
+
+  ol.lectures { list-style: none; padding: 0; margin: 0 0 6px; }
   ol.lectures li {
     display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-    padding: 9px 0; border-bottom: 1px dashed var(--rule);
+    padding: 8px 0; border-bottom: 1px dashed var(--rule);
   }
   ol.lectures li:last-child { border-bottom: none; }
-  .num { color: var(--muted); font-size: 14px; min-width: 34px; display: inline-block; }
+  .num { color: var(--muted); font-size: 14px; min-width: 36px; display: inline-block; }
   .pdf { font-size: 13px; border: 1px solid var(--rule); border-radius: 4px; padding: 1px 8px; white-space: nowrap; }
   .pdf:hover { background: var(--accent-soft); text-decoration: none; }
   li.soon { color: var(--muted); }
   li.soon .status { font-size: 13px; font-style: italic; white-space: nowrap; }
 
-  .note {
-    background: var(--accent-soft); border-radius: 6px; padding: 12px 16px;
-    font-size: 15px; color: var(--text); margin: 18px 0 8px;
-  }
+  .note { background: var(--accent-soft); border-radius: 6px; padding: 12px 16px; font-size: 15px; margin: 26px 0 8px; }
 
   footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: 14px; padding: 22px 0 40px; margin-top: 26px; }
 
@@ -80,6 +98,10 @@
     body { font-size: 16px; }
     header { padding-top: 28px; }
     h1 { font-size: 29px; }
+    details.course > summary { flex-wrap: wrap; gap: 2px 10px; }
+    .sem { min-width: 0; }
+    .cname { flex-basis: 100%; order: 3; padding-left: 25px; }
+    .course-body { padding: 0 14px 12px 16px; }
     ol.lectures li { flex-direction: column; gap: 2px; }
   }
 </style>
@@ -102,66 +124,174 @@
 <header>
   <h1>Lecture Notes</h1>
   <p class="lead">
-    Notes prepared by Dr. Prateek Sharma for his physics courses. Each lecture is a
-    self-contained PDF with derivations, figures and worked problems.
+    Notes prepared by Dr. Prateek Sharma for his physics courses. Click a course to see
+    its lectures. Each lecture is a PDF with derivations, figures and worked problems.
   </p>
 </header>
 
 <!--
+  =====================================================================
   HOW TO EDIT THIS PAGE
-  - Upload the lecture PDFs into the "notes" folder of the repository.
-  - A lecture that is available looks like this:
-      <li><span><span class="num">L1</span>Title</span><a class="pdf" href="notes/FILE.pdf">PDF</a></li>
-  - A lecture that is not yet available looks like this:
-      <li class="soon"><span><span class="num">L6</span>Title</span><span class="status">in preparation</span></li>
-  - To publish a lecture: upload its PDF, remove class="soon", and replace the
-    <span class="status">…</span> part with the <a class="pdf" …>PDF</a> link.
+  ---------------------------------------------------------------------
+  1. Upload the lecture PDF into the "notes" folder of the repository.
+
+  2. Find the course below (search for its name) and add ONE line
+     inside its <ol class="lectures"> ... </ol>:
+
+     Available lecture:
+       <li><span><span class="num">L1</span>Lecture title</span><a class="pdf" href="notes/FILE-NAME.pdf" target="_blank">PDF</a></li>
+
+     Lecture not ready yet:
+       <li class="soon"><span><span class="num">L2</span>Lecture title</span><span class="status">in preparation</span></li>
+
+  3. For a course that has no lectures yet, delete its line
+       <p class="empty">Notes will be added during the semester.</p>
+     when you add the first lecture.
+
+  4. Update the number in <span class="count">...</span> if you like.
+  =====================================================================
 -->
 
-<section class="course">
-  <h2>Physical Optics</h2>
-  <p class="course-meta">B.Sc. Semester V · Paper I · Kumaon University</p>
+<!-- ============================ B.Sc. ============================ -->
+<h2 class="programme">B.Sc.</h2>
 
-  <h3>Unit II — Interference</h3>
-  <ol class="lectures">
-    <li><span><span class="num">L1</span>Interference of light: superposition, intensity, visibility</span>
-        <a class="pdf" href="notes/U2_L01_Interference_Superposition_Intensity.pdf" target="_blank" rel="noopener">PDF</a></li>
-    <li><span><span class="num">L2</span>Coherent sources and Young's double slit</span>
-        <a class="pdf" href="notes/U2_L02_Coherence_Youngs_Double_Slit.pdf" target="_blank" rel="noopener">PDF</a></li>
-    <li><span><span class="num">L3</span>Optical path retardation and lateral shift of fringes</span>
-        <a class="pdf" href="notes/U2_L03_Optical_Path_Retardation_Lateral_Shift.pdf" target="_blank" rel="noopener">PDF</a></li>
-    <li><span><span class="num">L4</span>Fresnel biprism I: deviation, virtual sources, fringe width</span>
-        <a class="pdf" href="notes/U2_L04_Fresnel_Biprism_I.pdf" target="_blank" rel="noopener">PDF</a></li>
-    <li><span><span class="num">L5</span>Fresnel biprism II: lens displacement method, wavelength</span>
-        <a class="pdf" href="notes/U2_L05_Fresnel_Biprism_II.pdf" target="_blank" rel="noopener">PDF</a></li>
-    <li class="soon"><span><span class="num">L6</span>Interference due to multiple reflections</span><span class="status">in preparation</span></li>
-    <li class="soon"><span><span class="num">L7</span>Interference in thin films</span><span class="status">in preparation</span></li>
-    <li class="soon"><span><span class="num">L8</span>Applications: Newton's rings and precision measurements</span><span class="status">in preparation</span></li>
-    <li class="soon"><span><span class="num">L9</span>Haidinger fringes (equal inclination)</span><span class="status">in preparation</span></li>
-    <li class="soon"><span><span class="num">L10</span>Fringes of equal thickness and equal inclination</span><span class="status">in preparation</span></li>
-  </ol>
+<!-- ---------- B.Sc. Semester I: Mechanics and Theory of Oscillations ---------- -->
+<details class="course">
+  <summary>
+    <span class="sem">Semester I</span>
+    <span class="cname">Mechanics and Theory of Oscillations</span>
+    <span class="count">coming soon</span>
+  </summary>
+  <div class="course-body">
+    <p class="empty">Notes will be added during the semester.</p>
+    <ol class="lectures">
+      <!-- Add lectures here -->
+    </ol>
+  </div>
+</details>
 
-  <h3>Unit III — Diffraction</h3>
-  <ol class="lectures">
-    <li class="soon"><span><span class="num">L1</span>Fresnel and Fraunhofer diffraction</span><span class="status">in preparation</span></li>
-    <li><span><span class="num">L2</span>Fraunhofer diffraction at a single slit I: intensity</span>
-        <a class="pdf" href="notes/U3_L02_Single_Slit_Intensity.pdf" target="_blank" rel="noopener">PDF</a></li>
-    <li class="soon"><span><span class="num">L3</span>Single slit II: positions of maxima and minima</span><span class="status">in preparation</span></li>
-    <li class="soon"><span><span class="num">L4</span>Fresnel half-period zones and the zone plate</span><span class="status">in preparation</span></li>
-    <li class="soon"><span><span class="num">L5</span>Resolution of images and the Rayleigh criterion</span><span class="status">in preparation</span></li>
-    <li class="soon"><span><span class="num">L6</span>Resolving power of telescopes and microscopes</span><span class="status">in preparation</span></li>
-    <li class="soon"><span><span class="num">L7</span>Fraunhofer diffraction at a double slit</span><span class="status">in preparation</span></li>
-    <li class="soon"><span><span class="num">L8</span>Fraunhofer diffraction at N slits</span><span class="status">in preparation</span></li>
-  </ol>
+<!-- ---------- B.Sc. Semester III: Waves and Acoustics ---------- -->
+<details class="course">
+  <summary>
+    <span class="sem">Semester III</span>
+    <span class="cname">Waves and Acoustics</span>
+    <span class="count">coming soon</span>
+  </summary>
+  <div class="course-body">
+    <p class="empty">Notes will be added during the semester.</p>
+    <ol class="lectures">
+      <!-- Add lectures here -->
+    </ol>
+  </div>
+</details>
 
-  <p class="note">
-    These notes are shared for students' personal study. If you find an error, please
-    write to me (see the <a href="index.html#contact">contact details</a>).
-  </p>
-</section>
+<!-- ---------- B.Sc. Semester V: Physical Optics ---------- -->
+<details class="course">
+  <summary>
+    <span class="sem">Semester V</span>
+    <span class="cname">Physical Optics</span>
+    <span class="count">6 lectures</span>
+  </summary>
+  <div class="course-body">
+    <h3>Unit II — Interference</h3>
+    <ol class="lectures">
+      <li><span><span class="num">L1</span>Interference of light: superposition, intensity, visibility</span><a class="pdf" href="notes/U2_L01_Interference_Superposition_Intensity.pdf" target="_blank">PDF</a></li>
+      <li><span><span class="num">L2</span>Coherent sources and Young's double slit</span><a class="pdf" href="notes/U2_L02_Coherence_Youngs_Double_Slit.pdf" target="_blank">PDF</a></li>
+      <li><span><span class="num">L3</span>Optical path retardation and lateral shift of fringes</span><a class="pdf" href="notes/U2_L03_Optical_Path_Retardation_Lateral_Shift.pdf" target="_blank">PDF</a></li>
+      <li><span><span class="num">L4</span>Fresnel biprism I: deviation, virtual sources, fringe width</span><a class="pdf" href="notes/U2_L04_Fresnel_Biprism_I.pdf" target="_blank">PDF</a></li>
+      <li><span><span class="num">L5</span>Fresnel biprism II: lens displacement method, wavelength</span><a class="pdf" href="notes/U2_L05_Fresnel_Biprism_II.pdf" target="_blank">PDF</a></li>
+      <li class="soon"><span><span class="num">L6</span>Interference due to multiple reflections</span><span class="status">in preparation</span></li>
+      <li class="soon"><span><span class="num">L7</span>Interference in thin films</span><span class="status">in preparation</span></li>
+      <li class="soon"><span><span class="num">L8</span>Applications: Newton's rings and precision measurements</span><span class="status">in preparation</span></li>
+      <li class="soon"><span><span class="num">L9</span>Haidinger fringes (equal inclination)</span><span class="status">in preparation</span></li>
+      <li class="soon"><span><span class="num">L10</span>Fringes of equal thickness and equal inclination</span><span class="status">in preparation</span></li>
+    </ol>
+    <h3>Unit III — Diffraction</h3>
+    <ol class="lectures">
+      <li class="soon"><span><span class="num">L1</span>Fresnel and Fraunhofer diffraction</span><span class="status">in preparation</span></li>
+      <li><span><span class="num">L2</span>Fraunhofer diffraction at a single slit I: intensity</span><a class="pdf" href="notes/U3_L02_Single_Slit_Intensity.pdf" target="_blank">PDF</a></li>
+      <li class="soon"><span><span class="num">L3</span>Single slit II: positions of maxima and minima</span><span class="status">in preparation</span></li>
+      <li class="soon"><span><span class="num">L4</span>Fresnel half-period zones and the zone plate</span><span class="status">in preparation</span></li>
+      <li class="soon"><span><span class="num">L5</span>Resolution of images and the Rayleigh criterion</span><span class="status">in preparation</span></li>
+      <li class="soon"><span><span class="num">L6</span>Resolving power of telescopes and microscopes</span><span class="status">in preparation</span></li>
+      <li class="soon"><span><span class="num">L7</span>Fraunhofer diffraction at a double slit</span><span class="status">in preparation</span></li>
+      <li class="soon"><span><span class="num">L8</span>Fraunhofer diffraction at N slits</span><span class="status">in preparation</span></li>
+    </ol>
+  </div>
+</details>
+
+<!-- ============================ M.Sc. ============================ -->
+<h2 class="programme">M.Sc.</h2>
+
+<!-- ---------- M.Sc. Semester I: Mathematical Physics ---------- -->
+<details class="course">
+  <summary>
+    <span class="sem">Semester I</span>
+    <span class="cname">Mathematical Physics</span>
+    <span class="count">coming soon</span>
+  </summary>
+  <div class="course-body">
+    <p class="empty">Notes will be added during the semester.</p>
+    <ol class="lectures">
+      <!-- Add lectures here -->
+    </ol>
+  </div>
+</details>
+
+<!-- ---------- M.Sc. Semester I: Communication Electronics ---------- -->
+<details class="course">
+  <summary>
+    <span class="sem">Semester I</span>
+    <span class="cname">Communication Electronics</span>
+    <span class="count">coming soon</span>
+  </summary>
+  <div class="course-body">
+    <p class="empty">Notes will be added during the semester.</p>
+    <ol class="lectures">
+      <!-- Add lectures here -->
+    </ol>
+  </div>
+</details>
+
+<!-- ---------- M.Sc. Semester III: Advanced Quantum Mechanics ---------- -->
+<details class="course">
+  <summary>
+    <span class="sem">Semester III</span>
+    <span class="cname">Advanced Quantum Mechanics</span>
+    <span class="count">coming soon</span>
+  </summary>
+  <div class="course-body">
+    <p class="empty">Notes will be added during the semester.</p>
+    <ol class="lectures">
+      <!-- Add lectures here -->
+    </ol>
+  </div>
+</details>
+
+<!-- ---------- M.Sc. Semester III: Advanced Electronics II ---------- -->
+<details class="course">
+  <summary>
+    <span class="sem">Semester III</span>
+    <span class="cname">Advanced Electronics II</span>
+    <span class="count">coming soon</span>
+  </summary>
+  <div class="course-body">
+    <p class="empty">Notes will be added during the semester.</p>
+    <ol class="lectures">
+      <!-- Add lectures here -->
+    </ol>
+  </div>
+</details>
+
+<p class="note">
+  These notes are provided for students' personal study. They may be downloaded and
+  printed for this purpose, but may not be sold, republished or uploaded elsewhere
+  without permission. If you find an error, please write to me (see the
+  <a href="index.html#contact">contact details</a>).
+</p>
 
 <footer>
-  © <span id="year">2026</span> Prateek Sharma · <a href="index.html">Home</a>
+  © <span id="year">2026</span> Prateek Sharma. All rights reserved. · <a href="index.html">Home</a>
 </footer>
 
 </div>
